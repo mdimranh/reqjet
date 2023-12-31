@@ -38,7 +38,7 @@ export function ProfileDropdownMenu() {
       <DropdownMenuTrigger asChild>
         <Avatar className="flex items-center cursor-pointer">
           <AvatarImage className="w-8 h-8 rounded-full object-cover" src="" />
-          <AvatarFallback className="w-8 h-8 rounded-full object-cover">
+          <AvatarFallback className="w-8 h-8 rounded-full object-cover border border-slate-300">
             IH
           </AvatarFallback>
         </Avatar>

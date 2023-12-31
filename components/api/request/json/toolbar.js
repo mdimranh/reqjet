@@ -108,9 +108,9 @@ export default function ToolBar({
     //     accept="application/json"
     //   />
     // </>
-    <div className="flex w-full justify-between px-4 border-b border-b-slate-200 items-center">
-      <h1>Json Request Body</h1>
-      <div className="flex justify-end gap-4 me-24 py-2 items-center">
+    <div className="flex w-full justify-between px-8 border-b border-b-slate-200 items-center">
+      <h1 className="text-sm text-slate-500">Json Request Body</h1>
+      <div className="flex justify-end gap-4 me-8 py-2 items-center">
         <AiOutlineCloudUpload
           size={20}
           className="cursor-pointer text-slate-500 hover:text-slate-950"

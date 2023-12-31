@@ -39,6 +39,7 @@
     padding-inline-start: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
   }
   
   .pipeY {
