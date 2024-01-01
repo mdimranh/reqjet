@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import JSONEditor from "./json/content";
 import useToggle from "./json/useToogle";
-import ApiRoute from "./route/route";
 
 import * as Tabs from "@radix-ui/react-tabs";
+
+import Dragable from "./smart-tab/smarttab";
 
 function TabsDemo() {
   const [isSchemaEditorOn, toggleASchemaEditorOn] = useToggle(false);
@@ -81,7 +82,9 @@ function TabsDemo() {
 export default function RequestRouter() {
   return (
     <div className="h-full">
-      <ApiRoute />
+      {/* <SmartTab /> */}
+      <Dragable />
+      {/* <ApiRoute /> */}
       <TabsDemo />
     </div>
   );

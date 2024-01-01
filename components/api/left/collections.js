@@ -8,6 +8,8 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 
+import eventBus from "../store";
+
 import {
   DndProvider,
   MultiBackend,
@@ -118,6 +120,13 @@ export default function CollectionList() {
                 onClick={() => {
                   if (node.droppable) {
                     toggle(node?.id);
+                  } else {
+                    eventBus.emit("new_roure", {
+                      key: "3",
+                      label: "From Sidenav",
+                      method: "PUT",
+                      url: "https://www.google.com/app",
+                    });
                   }
                 }}
                 isDropTarget={isDropTarget}

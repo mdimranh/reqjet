@@ -8,7 +8,7 @@ import { SelectWorkspace } from "./workspace";
 export default function MainNav() {
   const router = useRouter();
   return (
-    <div className="grid grid-cols-3 w-full px-4 py-1 border-b border-b-slate-200 bg-slate-50">
+    <div className="grid grid-cols-3 w-full px-4 py-1 border-b border-b-slate-200">
       <span
         className="col-span-1 pointer-events-none flex place-items-center gap-2 p-1 lg:pointer-events-auto lg:p-0"
         rel="noopener noreferrer"

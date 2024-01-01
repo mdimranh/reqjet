@@ -1,3 +1,5 @@
+"use client";
+
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -177,6 +179,7 @@ export default function JSONEditor({
         onFixClick={handleFixClick}
       />
       <Editor
+        className="pt-2"
         language="json"
         path={path}
         options={{

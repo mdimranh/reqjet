@@ -109,7 +109,9 @@ export default function ToolBar({
     //   />
     // </>
     <div className="flex w-full justify-between px-8 border-b border-b-slate-200 items-center">
-      <h1 className="text-sm text-slate-500">Json Request Body</h1>
+      <h1 className="text-[12px] font-bold text-slate-500">
+        Json Request Body
+      </h1>
       <div className="flex justify-end gap-4 me-8 py-2 items-center">
         <AiOutlineCloudUpload
           size={20}
