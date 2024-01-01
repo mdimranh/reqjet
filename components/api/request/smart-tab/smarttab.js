@@ -124,10 +124,9 @@ export default function Dragable() {
   useEffect(() => {
     const subscription = eventBus.subscribe("new_roure", (data) => {
       let newRoute = getRoute(data.key);
-      console.log(newRoute);
       if (newRoute) {
         setActiveKey(newRoute.key);
-        setActiveRoute(data);
+        setActiveRoute(newRoute);
       } else {
         add(data);
       }
@@ -197,7 +196,7 @@ export default function Dragable() {
           </DndContext>
         )}
       />
-      <ApiRoute data={{ ...activeRoute }} />
+      <ApiRoute data={activeRoute} />
     </div>
   );
 }

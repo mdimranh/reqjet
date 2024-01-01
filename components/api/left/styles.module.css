@@ -12,9 +12,9 @@
     z-index: 3;
   }
   
-  .nodeWrapper:hover {
+  /* .nodeWrapper:hover {
     background-color: rgba(0, 0, 0, 0.04);
-  }
+  } */
   
   .nodeWrapper .expandIconWrapper {
     align-items: center;

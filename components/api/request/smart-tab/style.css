@@ -1,9 +1,19 @@
+.ant-tabs {
+    max-height: 44px !important;
+    overflow: hidden !important;
+}
+
 .ant-tabs-nav {
     background: rgba(112, 128, 144, 0.075);
+    max-height: 44px !important;
+    overflow: hidden !important;
+    margin: none !important;
 }
 
 .ant-tabs-nav-wrap {
     height: 44PX;
+    max-height: 44px;
+    overflow: hidden;
 }
 
 .ant-tabs-tab-btn {
@@ -17,7 +27,9 @@
     background-color: transparent !important;
     border-radius: 0 !important;
     width: 200px !important;
-    height: auto !important;
+    height: 44px !important;
+    max-height: 44px !important;
+    overflow: hidden !important;
     display: flex !important;
     justify-content: space-between;
     cursor: pointer !important;

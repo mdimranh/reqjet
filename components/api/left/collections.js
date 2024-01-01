@@ -8,6 +8,8 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 
+import { FaEdit } from "react-icons/fa";
+
 import eventBus from "../store";
 
 import {
@@ -112,26 +114,29 @@ export default function CollectionList() {
           )}
           render={(node, { depth, isOpen, isDropTarget }) => (
             <ContextMenuDemo _id={node?.id}>
-              <Node
-                getPipeHeight={getPipeHeight}
-                node={node}
-                depth={depth}
-                isOpen={isOpen}
-                onClick={() => {
-                  if (node.droppable) {
-                    toggle(node?.id);
-                  } else {
-                    eventBus.emit("new_roure", {
-                      key: "3",
-                      label: "From Sidenav",
-                      method: "PUT",
-                      url: "https://www.google.com/app",
-                    });
-                  }
-                }}
-                isDropTarget={isDropTarget}
-                treeData={treeData}
-              />
+              <div className="flex justify-between items-center hover:bg-slate-200 pe-2 group">
+                <Node
+                  getPipeHeight={getPipeHeight}
+                  node={node}
+                  depth={depth}
+                  isOpen={isOpen}
+                  onClick={() => {
+                    if (node.droppable) {
+                      toggle(node?.id);
+                    } else {
+                      eventBus.emit("new_roure", {
+                        key: "3",
+                        label: "From Sidenav",
+                        method: "PUT",
+                        url: "https://www.google.com/app",
+                      });
+                    }
+                  }}
+                  isDropTarget={isDropTarget}
+                  treeData={treeData}
+                />
+                <FaEdit size={15} className="hidden group-hover:block" />
+              </div>
             </ContextMenuDemo>
           )}
         />
