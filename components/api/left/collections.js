@@ -1,17 +1,3 @@
-// pages/index.tsx
-
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuShortcut,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
-
-import { FaEdit } from "react-icons/fa";
-
-import eventBus from "../store";
-
 import {
   DndProvider,
   MultiBackend,
@@ -19,8 +5,7 @@ import {
   getBackendOptions,
   getDescendants,
 } from "@minoru/react-dnd-treeview";
-
-import { useState } from "react";
+import React from "react";
 import Node from "./Node";
 import Placeholder from "./Placeholder";
 import sampleData from "./sample-default.json";
@@ -36,14 +21,13 @@ const reorderArray = (array, sourceIndex, targetIndex) => {
 
 export default function CollectionList() {
   const { ref, getPipeHeight, toggle } = useTreeOpenHandler();
-  const [treeData, setTreeData] = useState(sampleData);
+  const [treeData, setTreeData] = React.useState(sampleData);
 
   const handleDrop = (newTree, e) => {
     const { dragSourceId, dropTargetId, destinationIndex } = e;
     if (
       typeof dragSourceId === "undefined" ||
-      typeof dropTargetId === "undefined" ||
-      (dropTargetId === 0 && typeof e.dragSource.data !== "undefined")
+      typeof dropTargetId === "undefined"
     )
       return;
     const start = treeData.find((v) => v.id === dragSourceId);
@@ -105,7 +89,7 @@ export default function CollectionList() {
           sort={false}
           rootId={0}
           insertDroppableFirst={false}
-          enableAnimateExpand={false}
+          enableAnimateExpand={true}
           onDrop={handleDrop}
           canDrop={() => true}
           dropTargetOffset={5}
@@ -113,56 +97,22 @@ export default function CollectionList() {
             <Placeholder node={node} depth={depth} />
           )}
           render={(node, { depth, isOpen, isDropTarget }) => (
-            <ContextMenuDemo _id={node?.id}>
-              <div className="flex justify-between items-center hover:bg-slate-200 pe-2 group">
-                <Node
-                  getPipeHeight={getPipeHeight}
-                  node={node}
-                  depth={depth}
-                  isOpen={isOpen}
-                  onClick={() => {
-                    if (node.droppable) {
-                      toggle(node?.id);
-                    } else {
-                      eventBus.emit("new_roure", {
-                        key: "3",
-                        label: "From Sidenav",
-                        method: "PUT",
-                        url: "https://www.google.com/app",
-                      });
-                    }
-                  }}
-                  isDropTarget={isDropTarget}
-                  treeData={treeData}
-                />
-                <FaEdit size={15} className="hidden group-hover:block" />
-              </div>
-            </ContextMenuDemo>
+            <Node
+              getPipeHeight={getPipeHeight}
+              node={node}
+              depth={depth}
+              isOpen={isOpen}
+              onClick={() => {
+                if (node.droppable) {
+                  toggle(node?.id);
+                }
+              }}
+              isDropTarget={isDropTarget}
+              treeData={treeData}
+            />
           )}
         />
       </div>
     </DndProvider>
-  );
-}
-
-export function ContextMenuDemo({ _id, children }) {
-  return (
-    <ContextMenu>
-      <ContextMenuTrigger>{children}</ContextMenuTrigger>
-      <ContextMenuContent className="w-44">
-        <ContextMenuItem inset>
-          Back
-          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-        </ContextMenuItem>
-        <ContextMenuItem inset disabled>
-          Forward
-          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
-        </ContextMenuItem>
-        <ContextMenuItem inset>
-          Reload
-          <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-        </ContextMenuItem>
-      </ContextMenuContent>
-    </ContextMenu>
   );
 }
