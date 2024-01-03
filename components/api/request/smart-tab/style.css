@@ -50,7 +50,8 @@
 }
 
 .ant-tabs-tab .anticon-close:hover {
-    background-color: red !important;
+    background-color: rgba(112, 128, 144, 0.192) !important;
+    padding: 4px;
 }
 
 .ant-tabs-tab .anticon-close {

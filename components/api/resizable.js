@@ -6,24 +6,36 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
-import CollectionList from "./left/collections";
+import LeftBar from "./left/leftbar";
 
 import RequestRouter from "./request/request";
 
 export function ResizableMainContent() {
   return (
     <ResizablePanelGroup direction="horizontal">
-      <ResizablePanel defaultSize={15} minSize={10} maxSize={50}>
-        <CollectionList />
+      <ResizablePanel
+        collapsedSize={0}
+        collapsible={true}
+        defaultSize={30}
+        minSize={15}
+        maxSize={40}
+      >
+        <LeftBar />
       </ResizablePanel>
-      <ResizableHandle />
+      <ResizableHandle className="active:border active:border-slate-300 hover:border hover:border-slate-300" />
       <ResizablePanel defaultSize={85}>
         <ResizablePanelGroup direction="vertical">
           <ResizablePanel defaultSize={50} minSize={20}>
             <RequestRouter />
           </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel defaultSize={50}>
+          <ResizableHandle className="active:border active:border-slate-300 hover:border hover:border-slate-300" />
+          <ResizablePanel
+            defaultSize={50}
+            collapsedSize={5}
+            collapsible={true}
+            minSize={25}
+            maxSize={50}
+          >
             <div className="flex h-full items-center justify-center p-6">
               <span className="font-semibold">Three</span>
             </div>

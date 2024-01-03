@@ -1,6 +1,9 @@
 import { getDescendants } from "@minoru/react-dnd-treeview";
+import { PiDotsThreeOutlineDuotone } from "react-icons/pi";
 import NodeIcon from "./NodeIcon";
 import styles from "./styles.module.css";
+
+import { OptionsMenu } from "./options";
 
 const TREE_X_OFFSET = 22;
 
@@ -10,6 +13,8 @@ const Node = ({
   isOpen,
   isDropTarget,
   onClick,
+  isSelect,
+  selectedNodeId,
   treeData,
   getPipeHeight,
 }) => {
@@ -20,13 +25,23 @@ const Node = ({
     onClick(node.id);
   };
 
+  const handleOpen = (e) => {
+    e.stopPropagation();
+    isSelect(node.id);
+    if (!isOpen) {
+      onClick(node.id);
+    }
+  };
+
+  const isSelected = selectedNodeId === node.id;
+
   return (
     <div
       className={`${styles.nodeWrapper} tree-node ${
         node.droppable && isDropTarget ? styles.dropTarget : ""
-      }`}
+      } ${isSelected ? styles.selectedNode : ""}`}
       style={{ marginInlineStart: indent }}
-      onClick={handleToggle}
+      onClick={handleOpen}
     >
       <div className="flex items-center">
         <div
@@ -36,6 +51,7 @@ const Node = ({
         >
           {node.droppable && (
             <svg
+              onClick={handleToggle}
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -55,7 +71,14 @@ const Node = ({
       </div>
       <div
         className={styles.pipeX}
-        style={{ width: depth > 0 ? TREE_X_OFFSET : 0 }}
+        style={{
+          width:
+            depth > 0
+              ? node.droppable
+                ? TREE_X_OFFSET - 10
+                : TREE_X_OFFSET + 5
+              : 0,
+        }}
       />
       {getDescendants(treeData, node.parent)[0].id === node.id && (
         <div
@@ -66,7 +89,7 @@ const Node = ({
         />
       )}
       <div className={styles.labelGridItem}>{node.text}</div>
-      <div
+      {/* <div
         className={`${styles.expandIconWrapper} ${isOpen ? styles.isOpen : ""}`}
       >
         {node.droppable && (
@@ -83,7 +106,8 @@ const Node = ({
             />
           </svg>
         )}
-      </div>
+      </div> */}
+      <OptionsMenu button={<PiDotsThreeOutlineDuotone />} />
     </div>
   );
 };

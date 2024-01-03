@@ -1,7 +1,10 @@
-import { Inter } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter_Tight({
+  weight: "600",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "ReqJet (API Tester)",
@@ -14,7 +17,7 @@ import { LeftSideBar } from "@/components/main-nav/sidebar";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} text-slate-500`}>
         <MainNav />
         <div className="flex flex-shrink h-[calc(100vh-49px)] w-full">
           <LeftSideBar className="flex-none" />

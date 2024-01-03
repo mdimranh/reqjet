@@ -12,6 +12,8 @@ import sampleData from "./sample-default.json";
 import styles from "./styles.module.css";
 import useTreeOpenHandler from "./useTreeOpenHandler";
 
+import eventBus from "../store";
+
 const reorderArray = (array, sourceIndex, targetIndex) => {
   const newArray = [...array];
   const element = newArray.splice(sourceIndex, 1)[0];
@@ -22,6 +24,7 @@ const reorderArray = (array, sourceIndex, targetIndex) => {
 export default function CollectionList() {
   const { ref, getPipeHeight, toggle } = useTreeOpenHandler();
   const [treeData, setTreeData] = React.useState(sampleData);
+  const [selectedNodeId, setSelectedNodeId] = React.useState(null);
 
   const handleDrop = (newTree, e) => {
     const { dragSourceId, dropTargetId, destinationIndex } = e;
@@ -106,7 +109,18 @@ export default function CollectionList() {
                 if (node.droppable) {
                   toggle(node?.id);
                 }
+                eventBus.emit("new_roure", {
+                  key: node?.id,
+                  label: "From Sidenav",
+                  method: "PUT",
+                  url: "https://www.google.com/app",
+                });
               }}
+              isSelect={() => {
+                console.log(node?.id);
+                setSelectedNodeId(node?.id);
+              }}
+              selectedNodeId={selectedNodeId}
               isDropTarget={isDropTarget}
               treeData={treeData}
             />
